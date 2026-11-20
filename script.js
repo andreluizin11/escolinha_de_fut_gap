@@ -1,0 +1,42 @@
+const LOGO="logo.png";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+$$('img.lg').forEach(i=>i.src=LOGO);
+const CATS=[["Sub-7","5 a 7 anos","Sábado","08h às 09h","Fundamentos e brincadeiras"],["Sub-9","8 a 9 anos","Sábado","09h às 10h","Fundamentos e jogos"],["Sub-11","10 a 11 anos","Sábado","10h às 11h","Técnicas e condicionamento"],["Sub-13","12 a 13 anos","Sábado","14h às 15h","Técnicas e táticas"],["Sub-15","14 a 15 anos","Sábado","15h às 16h","Táticas e condicionamento"],["Sub-17","16 a 17 anos","Sábado","16h às 17h","Táticas e preparação física"]];
+const ST={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let PRICE=ST.get('gap_preco',120);
+const money=v=>'R$ '+Number(v).toFixed(2).replace('.',',');
+const setPrice=()=>$$('.pr').forEach(e=>e.textContent=money(PRICE));
+$('#dest').innerHTML=CATS.map(c=>`<div class="card"><img class="lg wm" alt=""><span class="chip">${c[0]}</span><h3>${c[1]}</h3><p>${c[2]}, ${c[3]}<br>${c[4]}</p></div>`).join('');
+$('#tb').innerHTML=CATS.map(c=>`<tr><td><b>${c[0]}</b></td><td>${c[1]}</td><td>${c[2]}</td><td>${c[3]}</td><td>${c[4]}</td></tr>`).join('');
+$('#cat').innerHTML='<option value="">Selecione</option>'+CATS.map(c=>`<option>${c[0]} (${c[1]})</option>`).join('');
+$('#fc').innerHTML='<option value="">Todas</option>'+CATS.map(c=>`<option>${c[0]}</option>`).join('');
+$$('.lg').forEach(i=>i.src=LOGO);
+const R=['home','sobre','categorias','matriculas','pagamentos','galeria','contato','admin'];
+function route(){let h=location.hash.slice(1)||'home';if(!R.includes(h))h='home';
+$$('main>section').forEach(s=>s.classList.remove('on'));$('#'+h).classList.add('on');
+if(h==='home')$('#h2').classList.add('on');
+$$('nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+h));
+$('#nav').classList.remove('open');scrollTo(0,0);setPrice();if(h==='admin')draw()}
+addEventListener('hashchange',route);route();
+$('#bt').onclick=()=>$('#nav').classList.toggle('open');
+$('#nasc').onchange=e=>{const b=new Date(e.target.value),n=new Date();let a=n.getFullYear()-b.getFullYear();if(n<new Date(n.getFullYear(),b.getMonth(),b.getDate()))a--;$('#idade').value=isNaN(a)?'':a+' anos'};
+$('#f').onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target));d.id=Date.now();d.pago=false;d.data=new Date().toLocaleDateString('pt-BR');
+const l=ST.get('gap_alunos',[]);l.push(d);ST.set('gap_alunos',l);
+const msg=encodeURIComponent(`Matrícula G.A.P\nAluno: ${d.aluno}\nCategoria: ${d.cat}\nResponsável: ${d.resp}\nTel: ${d.tel}\nE-mail: ${d.email}`);
+const x=$('#done');x.hidden=false;x.innerHTML=`<b>Matrícula registrada!</b> Para confirmar, envie os dados à escolinha:<div class="row" style="margin-top:12px"><a class="btn" target="_blank" rel="noopener" href="https://wa.me/5511990005820?text=${msg}">Confirmar por WhatsApp</a><a class="btn o" href="mailto:gapescolinha@gmail.com?subject=Matr%C3%ADcula%20G.A.P&body=${msg}">Confirmar por e-mail</a><a class="btn o" href="#pagamentos">Ver pagamento</a></div>`;
+e.target.reset();x.scrollIntoView({behavior:'smooth'})};
+$('#cp').onclick=async()=>{const b=$('#cp');try{await navigator.clipboard.writeText('44396444818')}catch(e){const t=document.createElement('textarea');t.value='44396444818';document.body.appendChild(t);t.select();document.execCommand('copy');t.remove()}b.textContent='Chave copiada!';setTimeout(()=>b.textContent='Copiar chave PIX',2000)};
+$('#cf').onsubmit=e=>{e.preventDefault();open('https://wa.me/5511990005820?text='+encodeURIComponent(`Olá! Sou ${$('#cn').value}. ${$('#cm').value}`),'_blank')};
+// Admin (proteção simples no navegador; troque a senha)
+const PASS='gap2026';let auth=false;
+$('#af').onsubmit=e=>{e.preventDefault();if($('#ap').value===PASS){auth=true;draw()}else $('#ae').textContent='Senha incorreta. Tente novamente.'};
+$('#out').onclick=()=>{auth=false;$('#ap').value='';draw()};
+$('#fc').onchange=draw;
+$('#sv').onclick=()=>{const v=parseFloat($('#mv').value);if(v>0){PRICE=v;ST.set('gap_preco',v);setPrice();$('#sv').textContent='Valor atualizado!';setTimeout(()=>$('#sv').textContent='Atualizar valor',1800)}};
+const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function draw(){$('#lg').hidden=auth;$('#pn').hidden=!auth;if(!auth)return;$('#mv').value=PRICE;
+const f=$('#fc').value,l=ST.get('gap_alunos',[]).filter(a=>!f||a.cat.startsWith(f));
+$('#cnt').textContent=l.length+' aluno(s) cadastrado(s)';
+$('#at').innerHTML=l.length?l.map(a=>`<tr><td>${esc(a.aluno)}<br><span class="sm">${esc(a.idade)} · ${esc(a.data)}</span></td><td>${esc(a.cat.split(' ')[0])}</td><td>${esc(a.resp)}<br><span class="sm">CPF ${esc(a.cpf)}</span></td><td>${esc(a.tel)}<br><span class="sm">${esc(a.email)}</span></td><td><button class="btn o" data-p="${a.id}">${a.pago?'Pago':'Pendente'}</button></td><td><button class="btn o" data-d="${a.id}" aria-label="Excluir">Excluir</button></td></tr>`).join(''):'<tr><td colspan="6">Nenhuma matrícula ainda. Elas aparecem aqui quando o formulário é preenchido neste navegador.</td></tr>';
+$$('[data-p]').forEach(b=>b.onclick=()=>{const l=ST.get('gap_alunos',[]);const a=l.find(x=>x.id==b.dataset.p);a.pago=!a.pago;ST.set('gap_alunos',l);draw()});
+$$('[data-d]').forEach(b=>b.onclick=()=>{if(confirm('Excluir esta matrícula?')){ST.set('gap_alunos',ST.get('gap_alunos',[]).filter(x=>x.id!=b.dataset.d));draw()}})}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Escolinha de Futebol G.A.P</title>
+<link rel="stylesheet" href="style.css"></head><body>
+<header>
+<a class="brand" href="#home"><img class="lg" alt="Logo G.A.P"><span>G.A.P</span></a>
+<button id="bt" aria-label="Abrir menu">Menu</button>
+<nav id="nav"><a href="#home">Home</a><a href="#sobre">Sobre nós</a><a href="#categorias">Categorias</a><a href="#matriculas">Matrículas</a><a href="#pagamentos">Pagamentos</a><a href="#galeria">Galeria</a><a href="#contato">Contato</a></nav>
+</header>
+<main>
+
+<section id="home" class="hero"><div class="w">
+<div><p class="sm">Escolinha de Futebol</p><h1><span style="color:var(--g3)">G.A.P</span><br>Onde cada chute é um grito de garra</h1>
+<p class="lead">Treino de qualidade, disciplina e diversão para crianças e jovens de 5 a 17 anos. Venha fazer parte do time.</p>
+<div class="row"><a class="btn" href="#matriculas">Faça sua matrícula</a><a class="btn o" href="#categorias">Ver categorias</a></div></div>
+<img class="lg big" alt="Pantera, mascote da Escola de Futebol G.A.P 2026"></div></section>
+
+<section id="h2"><div class="w"><h2>Destaques das categorias</h2><p class="lead">Turmas por faixa etária, do primeiro contato com a bola até a preparação para competir.</p>
+<div class="grid" id="dest"></div>
+<h2 style="margin-top:56px">Por que treinar futebol</h2>
+<div class="grid">
+<div class="card"><h3>Saúde e energia</h3><p>Condicionamento, coordenação e hábito de se movimentar.</p></div>
+<div class="card"><h3>Trabalho em equipe</h3><p>Aprender a ganhar, perder e jogar junto.</p></div>
+<div class="card"><h3>Disciplina e foco</h3><p>Compromisso com horários, respeito e superação.</p></div>
+<div class="card"><h3>Amizades</h3><p>Um grupo para crescer junto dentro e fora de campo.</p></div></div></div></section>
+
+<section id="sobre"><div class="w"><h2>Sobre nós</h2>
+<p class="lead">A G.A.P nasceu em 2026 com a garra da pantera: formar atletas e, antes disso, pessoas confiantes e respeitosas.</p>
+<div class="grid">
+<div class="card"><h3>Nossa história</h3><p>Uma escolinha criada para dar a cada criança um espaço seguro e profissional para aprender futebol.</p></div>
+<div class="card"><h3>Missão</h3><p>Ensinar futebol com qualidade e promover valores que acompanham o aluno para a vida.</p></div>
+<div class="card"><h3>Objetivos</h3><p>Desenvolver técnica, condicionamento e espírito de equipe em todas as idades.</p></div>
+<div class="card"><h3>Metodologia</h3><p>Treinos progressivos por categoria: fundamentos, tática, jogos e competições amistosas.</p></div>
+<div class="card"><h3>Desenvolvimento esportivo e pessoal</h3><p>Evolução técnica acompanhada de disciplina, autoestima e convivência.</p></div></div>
+<h2 style="margin-top:48px">Nossos treinadores</h2>
+<div class="grid"><div class="card"><h3>Giulia</h3><p>Responsável por acompanhar os alunos durante os treinamentos, trabalhando coordenação, disciplina e fundamentos do futebol.</p></div><div class="card"><h3>Bruno</h3><p>Responsável por organizar os exercícios e ensinar técnicas de passe, domínio de bola e finalização.</p></div><div class="card"><h3>Pedro</h3><p>Responsável por orientar os alunos nos jogos e atividades coletivas, incentivando o trabalho em equipe e o espírito esportivo.</p></div></div></div></section>
+
+<section id="categorias"><div class="w"><h2>Categorias</h2><p class="lead">Os alunos treinam com colegas da mesma faixa etária.</p>
+<div class="scroll"><table><thead><tr><th>Categoria</th><th>Idade</th><th>Dia</th><th>Horário sugerido</th><th>Treinamento</th></tr></thead><tbody id="tb"></tbody></table></div></div></section>
+
+<section id="matriculas"><div class="w"><h2>Matrículas</h2><p class="lead">Preencha os dados abaixo. Mensalidade de <b class="pr">R$ 120,00</b> por aluno.</p>
+<form id="f">
+<fieldset><legend>Dados do aluno</legend>
+<label class="full">Nome completo<input name="aluno" required></label>
+<label>Data de nascimento<input type="date" name="nasc" id="nasc" required></label>
+<label>Idade<input name="idade" id="idade" readonly></label>
+<label>Categoria desejada<select name="cat" id="cat" required></select></label></fieldset>
+<fieldset><legend>Dados do responsável</legend>
+<label class="full">Nome completo<input name="resp" required></label>
+<label>CPF<input name="cpf" inputmode="numeric" maxlength="14" required></label>
+<label>Telefone/WhatsApp<input name="tel" type="tel" required></label>
+<label class="full">E-mail<input name="email" type="email" required></label></fieldset>
+<fieldset><legend>Informações adicionais</legend>
+<label class="full">Endereço completo<input name="end" required></label>
+<label class="full">Experiência anterior com futebol<textarea name="exp" rows="2"></textarea></label>
+<label class="full">Restrições ou necessidades importantes<textarea name="rest" rows="2"></textarea></label>
+<label>Plano de treinamento<select name="plano"><option>Plano mensal</option></select></label></fieldset>
+<fieldset><legend>Finalização</legend>
+<label class="ck full"><input type="checkbox" required>Li e aceito os termos da escolinha.</label>
+<label class="ck full"><input type="checkbox" required>Sou o responsável legal e autorizo a participação do aluno nos treinos.</label></fieldset>
+<button class="btn" type="submit">Finalizar matrícula</button></form>
+<div id="done" class="ok" hidden></div></div></section>
+
+<section id="pagamentos"><div class="w"><h2>Mensalidades e pagamentos</h2>
+<div class="grid"><div class="card"><span class="chip">Plano mensal</span><div class="price pr">R$ 120,00</div><p>Por aluno / mês</p></div>
+<div class="card"><h3>Pagamento via PIX</h3><div class="pix">44396444818</div>
+<div class="row" style="margin-top:12px"><button class="btn" id="cp">Copiar chave PIX</button></div><p class="sm" style="margin-top:10px">Titular da chave: a confirmar.</p></div></div>
+<div class="card" style="margin-top:16px"><h3>Como pagar</h3><p>1. Copie a chave PIX e pague no app do seu banco.<br>2. Confira o titular antes de confirmar.<br>3. Envie o comprovante pelo WhatsApp informando o nome do aluno.</p>
+<div class="row" style="margin-top:14px"><a class="btn o" target="_blank" rel="noopener" href="https://wa.me/5511990005820?text=Ol%C3%A1!%20Segue%20o%20comprovante%20da%20mensalidade.">Enviar comprovante</a></div></div></div></section>
+
+<section id="galeria"><div class="w"><h2>Galeria</h2><p class="lead">Treinos, alunos, campeonatos e eventos da G.A.P.</p>
+<div class="gal">
+<figure><img src="galeria-treinos.png" alt="Treinos: evolução em cada detalhe" loading="lazy"></figure>
+<figure><img src="galeria-alunos.png" alt="Alunos: mais que futebol, uma família" loading="lazy"></figure>
+<figure><img src="galeria-campeonatos.png" alt="Campeonatos: desafios que fazem crescer" loading="lazy"></figure>
+<figure><img src="galeria-eventos.png" alt="Eventos: momentos especiais fora de campo" loading="lazy"></figure>
+</div></div></section>
+<section id="contato"><div class="w"><h2>Contato</h2>
+<div class="grid"><div class="card"><h3>WhatsApp</h3><p>(11) 99000-5820</p><div class="row" style="margin-top:12px"><a class="btn" target="_blank" rel="noopener" href="https://wa.me/5511990005820">Conversar no WhatsApp</a></div></div>
+<div class="card"><h3>E-mail</h3><p>gapescolinha@gmail.com</p><div class="row" style="margin-top:12px"><a class="btn o" href="mailto:gapescolinha@gmail.com">Enviar e-mail</a></div></div>
+<div class="card"><h3>Endereço</h3><p>Rua dos Esportes, 123</p><h3 style="margin-top:14px">Atendimento</h3><p>Segunda a sexta-feira: 08h às 18h<br>Sábado: 08h às 12h<br>Domingos e feriados: sem atendimento</p></div></div>
+<h3 style="margin-top:40px">Tire sua dúvida</h3>
+<form id="cf" style="max-width:520px"><label>Seu nome<input id="cn" required></label><label>Sua dúvida<textarea id="cm" rows="3" required></textarea></label><button class="btn" type="submit">Enviar pelo WhatsApp</button></form></div></section>
+
+<section id="admin"><div class="w"><h2>Painel administrativo</h2>
+<div id="lg" style="max-width:380px"><form id="af"><label>Senha<input type="password" id="ap" autocomplete="current-password"></label><button class="btn" type="submit">Entrar</button><p class="sm" id="ae"></p></form></div>
+<div id="pn" hidden>
+<div class="row" style="align-items:end"><label>Categoria<select id="fc"></select></label><label>Mensalidade (R$)<input id="mv" type="number" step="0.01"></label><button class="btn o" id="sv">Atualizar valor</button><button class="btn o" id="out">Sair</button></div>
+<p class="sm" id="cnt"></p>
+<div class="scroll"><table><thead><tr><th>Aluno</th><th>Cat.</th><th>Responsável</th><th>Contato</th><th>Pagamento</th><th></th></tr></thead><tbody id="at"></tbody></table></div>
+</div></div></section>
+</main>
+<footer><img class="lg" alt="">Escola de Futebol G.A.P 2026 · (11) 99000-5820 · gapescolinha@gmail.com · <a href="#admin">Área administrativa</a></footer>
+<script src="script.js"></script></body></html>
